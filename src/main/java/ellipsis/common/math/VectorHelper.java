@@ -167,4 +167,29 @@ public class VectorHelper
     {
         return Sum.sum(ds, d -> d*d);
     }
+    
+    public static double max(RealVector v)
+    {
+    	return max(v.getDimension(), v::getEntry);
+    }
+    
+    public static double max(int length, IndexedFunction f)
+    {
+    	double max = -Double.MAX_VALUE;
+		for (int i = 0; i < length; i++)
+		{
+			max = Math.max(f.value(i), max);
+		}
+		return max;
+    }
+    
+    public static double maxAbs(RealVector v)
+    {
+    	return maxAbs(v.getDimension(), v::getEntry);
+    }
+    
+    public static double maxAbs(int length, IndexedFunction f)
+    {
+    	return max(length, i -> Math.abs(f.value(i)));
+    }
 }

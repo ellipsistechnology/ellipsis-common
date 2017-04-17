@@ -1,9 +1,39 @@
 package ellipsis.common;
 
 import static java.lang.Math.abs;
+import ellipsis.common.math.Sum.ValueFunction;
 
 public class ArrayHelper
 {
+	public static <T> T maxElement(T[] ts, ValueFunction<T> value)
+	{
+		double max = -Double.MAX_VALUE;
+		int maxIndex = -1;
+		for (int i = 0; i < ts.length; i++) 
+		{
+			double v = value.value(ts[i]);
+			if(v > max)
+			{
+				max = v;
+				maxIndex = i;
+			}
+		}
+		return ts[maxIndex];
+	}
+	public static <T> double max(T[] ts, ValueFunction<T> value)
+	{
+		double max = -Double.MAX_VALUE;
+		for (int i = 0; i < ts.length; i++) 
+		{
+			double v = value.value(ts[i]);
+			if(v > max)
+			{
+				max = v;
+			}
+		}
+		return max;
+	}
+	
 	/**
 	 * Maximum element by magnitude.
 	 * @param x

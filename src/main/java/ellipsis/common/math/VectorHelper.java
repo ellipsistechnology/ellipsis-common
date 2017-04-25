@@ -9,6 +9,7 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealVector;
 
 import ellipsis.common.math.Sum.IndexedFunction;
+import ellipsis.common.math.Sum.IndexedNumberFunction;
 import ellipsis.common.math.Sum.ValueFunction;
 import ellipsis.common.math.Sum.VectorValueFunction;
 
@@ -191,5 +192,16 @@ public class VectorHelper
     public static double maxAbs(int length, IndexedFunction f)
     {
     	return max(length, i -> Math.abs(f.value(i)));
+    }
+    
+    public static RealVector map(RealVector vIn, IndexedNumberFunction f)
+    {
+    	int dimension = vIn.getDimension();
+		RealVector vOut = new ArrayRealVector(dimension);
+    	for (int i = 0; i < dimension; i++) 
+    	{
+			vOut.setEntry(i, f.value(i, vIn.getEntry(i)));
+		}
+    	return vOut;
     }
 }

@@ -18,6 +18,11 @@ public class Sum
         double value(double d);
     }
     
+    public static interface IndexedNumberFunction
+    {
+        double value(int i, double d);
+    }
+    
     public static interface IndexedBooleanFunction
     {
         boolean value(int i);
